@@ -1,6 +1,29 @@
 node {
     stage('Checkout') {
+        echo "Branch - ${env.BRANCH_NAME}"
+        echo "Job name - ${env.JOB_NAME}"
+        
+        def branch = env.BRANCH_NAME
+        def job = env.JOB_NAME
+        
+        if(branch != null) {
+            if("${branch}" =~ /^master$/) {
+                buildType = '-RELEASE'
+            } else {
+                buildType = '-SNAPSHOT'
+            }
+        }
+        echo "buildType - ${buildType}"
+        
         checkout scm
+    }
+    
+    stage('Gradle Build') {
+        try {
+            echo 'Build Started'
+            currentBuild.displayName = "${env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT}"
+            buildVersionNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT + buildType
+        }
     }
     /*
     stage('Gradle Static Analysis'){
