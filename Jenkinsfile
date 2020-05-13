@@ -18,6 +18,15 @@ node {
         checkout scm
     }
     
+    stage('Git Commit Hash') {
+        sh 'git rev-parse HEAD > commit'
+        git_commit = readFile('commit').trim()
+        SHORT_GIT_COMMIT = git_commit.take(7)
+        echo "Short git commit = ${SHORT_GIT_COMMIT}"
+        buildVersionNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT + buildType
+        echo "file_name ${buildVersionNumber}"
+    }
+    
     stage('Gradle Build') {
         try {
             echo 'Build Started'
