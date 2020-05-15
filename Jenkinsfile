@@ -41,6 +41,22 @@ node {
         } finally {
         }
     }
+    
+    stage('Nexus Push') {
+        nexusArtifactUploader artifacts: [
+            [
+                artifactId: 'HelloWorld', classifier: '', file: 'build/libs/HelloWorld.jar', type: 'jar'
+            ]
+        ], 
+            credentialsId: 'nexusadmin', 
+            groupId: 'com.shiva.test', 
+            nexusUrl: '35.226.116.179:8081/', 
+            nexusVersion: 'nexus3', 
+            protocol: 'http', 
+            repository: 'sample-repo', 
+            version: '1.0.0'
+    }
+    
     /*
     stage('Gradle Static Analysis'){
         withSonarQubeEnv('shivasonarqube') {
