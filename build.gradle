@@ -14,12 +14,12 @@ jar {
     //baseName = 'jb-hello-world'
     //version =  '0.1.0'
     manifest {
-        attributes {
+        attributes(
             "Implementation-Title": project.name,
             "Implementation-Version": project.version,
             "Build-By": System.getProperty('user.name'),
             "Built-Time": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        }
+        )
     }
 }
 
@@ -45,3 +45,5 @@ model {
         destination = file("$buildDir/libs/pom.xml")
     }
 }
+
+check.dependsOn { tasks findAll { task -> task.name.startWith('generatePomFileForMavenPublication') } }
