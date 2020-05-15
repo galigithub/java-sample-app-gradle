@@ -51,4 +51,4 @@ model {
     }
 }
 
-check.dependsOn { tasks findAll { task -> task.name.startsWith('generatePomFileForMavenPublication') } }
+check.dependsOn { tasks.findAll { task -> task.name.startsWith('generatePomFileForMavenPublication') } }
