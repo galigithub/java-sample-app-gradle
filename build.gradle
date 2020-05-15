@@ -6,7 +6,7 @@ apply plugin: 'application'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
-//mainClassName = 'hello.HelloWorld'
+mainClassName = 'hello.HelloWorld'
 
 repositories {
     mavenCentral()
