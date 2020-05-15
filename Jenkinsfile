@@ -57,6 +57,15 @@ node {
             version: '1.0.0'
     }
     
+    stage('Ansible deploy') {
+        try {
+            if("${buildType}" == "-RELEASE"){
+                repo_name="sample-repo"
+                unix_dest="/stage/"
+            }
+        }
+    }
+    
     /*
     stage('Gradle Static Analysis'){
         withSonarQubeEnv('shivasonarqube') {
