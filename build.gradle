@@ -10,6 +10,7 @@ apply plugin: 'maven-publish'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 jar {
@@ -50,4 +51,4 @@ model {
     }
 }
 
-check.dependsOn { tasks findAll { task -> task.name.startWith('generatePomFileForMavenPublication') } }
+check.dependsOn { tasks findAll { task -> task.name.startsWith('generatePomFileForMavenPublication') } }
