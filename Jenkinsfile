@@ -50,10 +50,10 @@ node {
         ], 
             credentialsId: 'nexusadmin', 
             groupId: 'com.shiva.test', 
-            nexusUrl: '34.71.185.85:8081/', 
+            nexusUrl: '10.128.0.23:8081/', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
-            repository: 'sample-repo', 
+            repository: 'shiva-release', 
             version: "${buildVersionNumber}"
     }
     
