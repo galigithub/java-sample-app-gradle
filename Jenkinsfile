@@ -50,21 +50,56 @@ node {
         ], 
             credentialsId: 'nexusadmin', 
             groupId: 'com.shiva.test', 
-            nexusUrl: '35.226.116.179:8081/', 
+            nexusUrl: '34.71.185.85:8081/', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
             repository: 'sample-repo', 
             version: '1.0.0'
     }
     
+    /*
     stage('Ansible deploy') {
         try {
             if("${buildType}" == "-RELEASE"){
                 repo_name="sample-repo"
                 unix_dest="/stage/"
+                mc_cred="fldrwds"
+                file_name = "${unix_grp}" + '-' + "${CompName}" + '-' + "${buildVersionNumber}"
+                echo "release file name is ${file_name}"
+            } else {
+                repo_name="snapshot-repo"
+                unix_dest="/testlocation/"
+                mc_cred="fldrwcdt"
+                date=new Date().format("yyyyMMdd")
+                search_filename = "${unix_grp}" + '-' + "${CompName}" + '-' + "${buildVersionNumber}"
+                echo "find file name is ${search_filename}"
+                
+                //sh "grep ${}"
+                echo "snopshot file name is ${search_filename}"
             }
+            
+            artifact_id = "${unix_grp}" + '-' + "${CompName}"
+            group_id = "com/shiva/test/helloworld"
+            unix_mode="0540"
+            file_extension="jar"
+            unix_grp="${unix_grp}"
+            date_time=new Date().format("yyyyMMdd'_'HHmmss")
+            echo "Deploying file : ${file_name} from ${repo_name} to ${unix_dest}"
+            
+            //check ansible installed on jenkins/ansible server
+            sh "tower-cli job launch --job-template=JarDeploy --credential=${mc_cred} --extra-vars=\"repo_name=${repo_name}""
+            //sh "ansible-playbook"
+        } catch (e) {
+            currentBuild.result = "DEPLOY FAILED"
+            throw e
+        } finally {
+            echo "finally block - ansible deploy"
+            //send notification for - build results to mail and slack
         }
     }
+    */
+    
+    
     
     /*
     stage('Gradle Static Analysis'){
