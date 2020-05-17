@@ -1,4 +1,5 @@
 node {
+    /*
     stage('Checkout') {
         echo "Branch - ${env.BRANCH_NAME}"
         echo "Job name - ${env.JOB_NAME}"
@@ -56,7 +57,7 @@ node {
             repository: 'shiva-release', 
             version: "${buildVersionNumber}"
     }
-    
+    */
     stage('stage') {
         sh 'ansible all -m ping'
     }
