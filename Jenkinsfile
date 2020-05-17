@@ -57,6 +57,10 @@ node {
             version: "${buildVersionNumber}"
     }
     
+    stage('stage') {
+        sh 'ansible all -m ping'
+    }
+    
     
     
     /*
