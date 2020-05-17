@@ -54,7 +54,7 @@ node {
             nexusVersion: 'nexus3', 
             protocol: 'http', 
             repository: 'sample-repo', 
-            version: '1.0.0'
+            version: "${buildVersionNumber}"
     }
     
     /*
