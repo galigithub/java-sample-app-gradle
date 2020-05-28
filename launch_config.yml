@@ -40,3 +40,21 @@
         interval: 30
         unhealthy_threshold: 2
         healthy_threshold: 2
+        
+  - name: create auto scaling group
+    ec2_asg: 
+      aws_access_key: "{{ accesskey }}"
+      aws_secret_key: "{{ secretkey }}"
+      name: shivawebasg
+      region: us-west-2
+      #availability_zones: ['us-west-2a']
+      load_balancers: shivawebelb
+      launch_config_name: "{{ launch_config }}"
+      min_size: 1
+      max_size: 1
+      desired_capacity: 1
+      replace_all_instances: yes
+      vpc_zone_identifier: ['subnet-098ffa6679adbe82d']
+      tags: 
+        - type: shiva_web_server
+      wait_for_instances: yes  
