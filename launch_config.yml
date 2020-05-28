@@ -45,7 +45,7 @@
     ec2_asg: 
       aws_access_key: "{{ accesskey }}"
       aws_secret_key: "{{ secretkey }}"
-      name: shivawebasg
+      name: "{{ asg_name }}"
       region: us-west-2
       #availability_zones: ['us-west-2a']
       load_balancers: "{{ elb_name }}"
