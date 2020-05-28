@@ -61,9 +61,10 @@ node {
     stage('copy nexus data') {
         sh 'ls -la'
         echo "sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/${buildVersionNumber}/HelloWorld-${buildVersionNumber}.jar" 
-        echo "sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/${buildVersionNumber}/HelloWorld-${buildVersionNumber}.jar" >> ./user_data_file
+        sh 'echo "sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/${buildVersionNumber}/HelloWorld-${buildVersionNumber}.jar" >> ./user_data_file'
+        
         echo "sudo cp HelloWorld-${buildVersionNumber}.jar /opt/tomcat/latest/webapps/"
-        echo "sudo cp HelloWorld-${buildVersionNumber}.jar /opt/tomcat/latest/webapps/" >> ./user_data_file
+        sh 'echo "sudo cp HelloWorld-${buildVersionNumber}.jar /opt/tomcat/latest/webapps/" >> ./user_data_file'
     }
     
     /*
