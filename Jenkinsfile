@@ -1,5 +1,5 @@
 node {
-    /*
+    
     stage('Checkout') {
         echo "Branch - ${env.BRANCH_NAME}"
         echo "Job name - ${env.JOB_NAME}"
@@ -18,7 +18,7 @@ node {
         
         checkout scm
     }
-    
+    /*
     stage('Git Commit Hash') {
         sh 'git rev-parse HEAD > commit'
         git_commit = readFile('commit').trim()
