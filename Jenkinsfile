@@ -1,5 +1,10 @@
 node {
     
+    environment {
+        ACCESS_KEY     = credentials('ACCESS_KEY')
+        SECRET_KEY = credentials('SECRET_KEY')
+    }
+    
     stage('Checkout') {
         echo "Branch - ${env.BRANCH_NAME}"
         echo "Job name - ${env.JOB_NAME}"
