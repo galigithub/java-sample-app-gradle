@@ -9,6 +9,8 @@ node {
         echo "Branch - ${env.BRANCH_NAME}"
         echo "Job name - ${env.JOB_NAME}"
         
+        echo "accesskey - $ACCESS_KEY"
+        
         def branch = env.BRANCH_NAME
         def job = env.JOB_NAME
         
@@ -68,7 +70,7 @@ node {
     }
     
     stage('create launch configuration') {
-        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=shiva_web_lc-${env.JOB_NAME} accesskey=${ACCESS_KEY} secretkey=${SECRET_KEY}\""
+        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=shiva_web_lc-${env.JOB_NAME} accesskey=${env.ACCESS_KEY} secretkey=${env.SECRET_KEY}\""
     }
     
     /*
