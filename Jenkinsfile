@@ -61,6 +61,7 @@ node {
     stage('copy nexus data') {
         sh 'ls -la'
         sh 'cat user_data_file'
+        buildVersionNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT + buildType
         echo "sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/${buildVersionNumber}/HelloWorld-${buildVersionNumber}.jar" 
         sh 'echo "sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/${buildVersionNumber}/HelloWorld-${buildVersionNumber}.jar" >> ./user_data_file'
         
