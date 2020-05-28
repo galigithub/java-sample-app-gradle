@@ -18,7 +18,7 @@ node {
         
         checkout scm
     }
-    /*
+    
     stage('Git Commit Hash') {
         sh 'git rev-parse HEAD > commit'
         git_commit = readFile('commit').trim()
@@ -27,7 +27,7 @@ node {
         buildVersionNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT + buildType
         echo "file_name ${buildVersionNumber}"
     }
-    
+    /*
     stage('Gradle Build') {
         try {
             echo 'Build Started'
@@ -63,7 +63,8 @@ node {
     }*/
     
     stage('create launch configuration') {
-        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=shivalc-${env.BUILD_NUMBER} elb_name=shivaelb-${env.BUILD_NUMBER}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
+        infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
+        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=launchconfig-${infraNumber} elb_name=loadbalancer-${infraNumber} asg_name=autoscale-${infraNumber}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
     }
     
     /*
