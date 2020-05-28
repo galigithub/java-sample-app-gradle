@@ -63,7 +63,7 @@ node {
     }
     
     stage('create launch configuration') {
-        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=shiva_web_lc-${env.JOB_NAME} accesskey=$ACCESS_KEY secretkey=$SECRET_KEY""
+        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=shiva_web_lc-${env.JOB_NAME} accesskey=$ACCESS_KEY secretkey=$SECRET_KEY\""
     }
     
     /*
