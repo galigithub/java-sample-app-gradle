@@ -62,7 +62,9 @@ node {
         sh 'ansible all -m ping'
     }
     
-    
+    stage('create launch configuration') {
+        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=shiva_web_lc-${env.JOB_NAME}" --vault-password-file=\"/home/rajgali83/pass.txt""
+    }
     
     /*
     stage('Ansible deploy') {
