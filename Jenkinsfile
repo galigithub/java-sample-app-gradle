@@ -63,14 +63,9 @@ node {
         sh "echo sudo cp HelloWorld-'${buildVersionNumber}'.jar /opt/tomcat/latest/webapps/ >> ./user_data_file"
     }
     
-    /*
-    stage('stage') {
-        sh 'ansible all -m ping'
-    }*/
-    
     stage('create launch configuration') {
-        infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
-        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=launchconfig-${infraNumber} elb_name=loadbalancer-${infraNumber} asg_name=autoscale-${infraNumber}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
+        //infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
+        sh "/usr/bin/ansible-playbook provision.yml  --vault-password-file=\"/home/rajgali83/pass.txt\""
     }
     
     /*
@@ -103,7 +98,6 @@ node {
             echo "Deploying file : ${file_name} from ${repo_name} to ${unix_dest}"
             
             //check ansible installed on jenkins/ansible server
-            sh "tower-cli job launch --job-template=JarDeploy --credential=${mc_cred} --extra-vars=\"repo_name=${repo_name}""
             //sh "ansible-playbook"
         } catch (e) {
             currentBuild.result = "DEPLOY FAILED"
@@ -114,35 +108,7 @@ node {
         }
     }
     */
-    
-    /*
-    stage('Docker'){
-        sshPublisher(publishers: 
-                     [sshPublisherDesc(configName: 'ansible_server', 
-                         transfers: [sshTransfer(cleanRemote: false, 
-                                                 excludes: '', 
-                                                 execCommand: '''cd /opt/docker;
-                                                 docker build -t shiva_demo .;
-                                                 docker tag shiva_demo shvdocker/shiva_demo:${BUILD_NUMBER};
-                                                 docker push shvdocker/shiva_demo:${BUILD_NUMBER};
-                                                 docker rmi shiva_demo shvdocker/shiva_demo;''', 
-                                                 execTimeout: 120000, 
-                                                 flatten: false, 
-                                                 makeEmptyDirs: false, 
-                                                 noDefaultExcludes: false, 
-                                                 patternSeparator: '[, ]+', 
-                                                 remoteDirectory: '//opt//docker', 
-                                                 remoteDirectorySDF: false, 
-                                                 removePrefix: 'build/libs', 
-                                                 sourceFiles: 'build/libs/HelloWorld.jar'
-                                                )], 
-                         usePromotionTimestamp: false, 
-                         useWorkspaceInPromotion: false, 
-                         verbose: false
-                     )])
-    }
-    */
-    
+   
     /*
     stage('Gradle Static Analysis'){
         withSonarQubeEnv('shivasonarqube') {
