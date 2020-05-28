@@ -1,0 +1,17 @@
+- name: create ec2 launch config
+  hosts: localhost
+  connection: local
+  vars_files:
+     - /home/rajgali83/accesskey
+  tasks:
+  - name: ec2 lc create
+    ec2_lc:
+      aws_access_key: "{{ accesskey }}"
+      aws_secret_key: "{{ secretkey }}"
+      name: "{{ launch_config }}"
+      image_id: ami-0d6621c01e8c2de2c
+      instance_type: t2.micro
+      #key_name: ec2admin
+      security_groups: ['mysecurity']
+      region: us-west-2
+      user_data_path: /home/rajgali83/user_data
