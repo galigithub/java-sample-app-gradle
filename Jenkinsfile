@@ -1,5 +1,5 @@
 node {
-    
+    /*
     stage('Checkout') {
         echo "Branch - ${env.BRANCH_NAME}"
         echo "Job name - ${env.JOB_NAME}"
@@ -41,7 +41,7 @@ node {
             throw e
         } finally {
         }
-    }
+    }*/
     /*
     stage('Nexus Push') {
         nexusArtifactUploader artifacts: [
@@ -57,10 +57,10 @@ node {
             repository: 'shiva-release', 
             version: "${buildVersionNumber}"
     }
-    */
+    
     stage('stage') {
         sh 'ansible all -m ping'
-    }
+    }*/
     
     stage('create launch configuration') {
         sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=shiva_web_lc-${env.JOB_NAME}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
