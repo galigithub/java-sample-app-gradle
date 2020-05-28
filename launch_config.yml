@@ -8,7 +8,7 @@
     ec2_lc:
       aws_access_key: "{{ accesskey }}"
       aws_secret_key: "{{ secretkey }}"
-      name: sh_lc_{{ build_number }}
+      name: lc_"{{ build_number }}"
       image_id: ami-0d6621c01e8c2de2c
       instance_type: t2.micro
       #key_name: ec2admin
@@ -20,7 +20,7 @@
     ec2_elb_lb: 
       aws_access_key: "{{ accesskey }}"
       aws_secret_key: "{{ secretkey }}"
-      name: sh_elb_{{ build_number }}
+      name: elb_"{{ build_number }}"
       state: present
       region: us-west-2
       cross_az_load_balancing: yes
@@ -48,8 +48,8 @@
       name: shivawebasg
       region: us-west-2
       #availability_zones: ['us-west-2a']
-      load_balancers: sh_elb_{{ build_number }}
-      launch_config_name: sh_lc_{{ build_number }}
+      load_balancers: elb_"{{ build_number }}"
+      launch_config_name: lc_"{{ build_number }}"
       min_size: 1
       max_size: 1
       desired_capacity: 1
