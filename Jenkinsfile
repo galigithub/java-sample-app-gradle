@@ -49,7 +49,7 @@ node {
                 artifactId: 'HelloWorld', classifier: '', file: 'build/libs/HelloWorld.jar', type: 'jar'
             ]
         ], 
-            credentialsId: 'nexusadmin', 
+            credentialsId: 'nexususer', 
             groupId: 'com.shiva.test', 
             nexusUrl: '10.128.0.23:8081/', 
             nexusVersion: 'nexus3', 
