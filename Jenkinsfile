@@ -9,7 +9,7 @@ node {
         echo "Branch - ${env.BRANCH_NAME}"
         echo "Job name - ${env.JOB_NAME}"
         
-        echo "accesskey - $ACCESS_KEY"
+        echo "accesskey - ${env.ACCESS_KEY}"
         
         def branch = env.BRANCH_NAME
         def job = env.JOB_NAME
