@@ -27,7 +27,7 @@ node {
         buildVersionNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT + buildType
         echo "file_name ${buildVersionNumber}"
     }
-    /*
+    
     stage('Gradle Build') {
         try {
             echo 'Build Started'
@@ -41,8 +41,8 @@ node {
             throw e
         } finally {
         }
-    }*/
-    /*
+    }
+    
     stage('Nexus Push') {
         nexusArtifactUploader artifacts: [
             [
@@ -57,16 +57,16 @@ node {
             repository: 'shiva-release', 
             version: "${buildVersionNumber}"
     }
-    
+    /*
     stage('stage') {
         sh 'ansible all -m ping'
     }*/
-    
+    /*
     stage('create launch configuration') {
         infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
         sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=launchconfig-${infraNumber} elb_name=loadbalancer-${infraNumber} asg_name=autoscale-${infraNumber}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
     }
-    
+    */
     /*
     stage('Ansible deploy') {
         try {
