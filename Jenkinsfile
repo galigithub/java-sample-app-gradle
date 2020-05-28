@@ -64,7 +64,7 @@ node {
         echo "sudo cp HelloWorld-${buildVersionNumber}.jar /opt/tomcat/latest/webapps/"
         echo "sudo cp HelloWorld-${buildVersionNumber}.jar /opt/tomcat/latest/webapps/" >> user_data_file
     }
-    http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/27-7b7c950-RELEASE/HelloWorld-27-7b7c950-RELEASE.jar
+    
     /*
     stage('stage') {
         sh 'ansible all -m ping'
