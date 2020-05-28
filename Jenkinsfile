@@ -59,26 +59,20 @@ node {
     }
     
     stage('copy nexus data') {
-        sh 'ls -la'
-        sh 'cat user_data_file'
-        echo "sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/${buildVersionNumber}/HelloWorld-${buildVersionNumber}.jar" 
         sh "echo sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/'${buildVersionNumber}'/HelloWorld-'${buildVersionNumber}'.jar >> ./user_data_file"
-        
-        echo "sudo cp HelloWorld-${buildVersionNumber}.jar /opt/tomcat/latest/webapps/"
         sh "echo sudo cp HelloWorld-'${buildVersionNumber}'.jar /opt/tomcat/latest/webapps/ >> ./user_data_file"
-        sh 'cat user_data_file'
     }
     
     /*
     stage('stage') {
         sh 'ansible all -m ping'
     }*/
-    /*
+    
     stage('create launch configuration') {
         infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
         sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=launchconfig-${infraNumber} elb_name=loadbalancer-${infraNumber} asg_name=autoscale-${infraNumber}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
     }
-    */
+    
     /*
     stage('Ansible deploy') {
         try {
