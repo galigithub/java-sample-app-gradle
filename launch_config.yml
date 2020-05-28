@@ -58,7 +58,11 @@
       tags: 
         - type: shiva_web_server
       wait_for_instances: yes
-      
+  
+  #- name: wait for 5 mins
+  #  pause:
+  #    minutes: 5  
+  
   - name: Get elb facts
     ec2_elb_info:
        aws_access_key: "{{ accesskey }}"
@@ -77,4 +81,9 @@
        value: "{{ elb_info.elbs.0.dns_name }}"
        alias: True
        alias_hosted_zone_id: "{{ elb_info.elbs.0.hosted_zone_id }}"
-       overwrite: yes    
+       overwrite: yes
+  
+  #- name: wait for 2 mins
+  #  pause:
+  #    minutes: 2
+  
