@@ -63,7 +63,7 @@ node {
     }*/
     
     stage('create launch configuration') {
-        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"build_number=${env.JOB_NAME}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
+        sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=shivalc-${env.BUILD_NUMBER} elb_name=shivaelb-${env.BUILD_NUMBER}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
     }
     
     /*
