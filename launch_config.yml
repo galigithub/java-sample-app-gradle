@@ -57,4 +57,24 @@
       vpc_zone_identifier: ['subnet-098ffa6679adbe82d']
       tags: 
         - type: shiva_web_server
-      wait_for_instances: yes  
+      wait_for_instances: yes
+      
+  - name: Get elb facts
+    ec2_elb_info:
+       aws_access_key: "{{ accesskey }}"
+       aws_secret_key: "{{ secretkey }}"
+       region: us-west-2
+       names: "{{ elb_name }}"
+    register: elb_info
+  - name: create dns record
+    route53:
+       aws_access_key: "{{ accesskey }}"
+       aws_secret_key: "{{ secretkey }}"
+       state: present
+       zone: shivawebaddress.com
+       record: www.shivawebaddress.com
+       type: A
+       value: "{{ elb_info.elbs.0.dns_name }}"
+       alias: True
+       alias_hosted_zone_id: "{{ elb_info.elbs.0.hosted_zone_id }}"
+       overwrite: yes    
