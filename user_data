@@ -1,0 +1,5 @@
+#!/bin/bash
+yum install httpd -y
+systemctl start httpd.service
+systemctl enable httpd.service
+echo "Hello from Shiva" > /var/www/html/index.html
