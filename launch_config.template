@@ -41,12 +41,6 @@ Parameters:
     Default: awscf
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
 
-  Environment:
-    Description: Application environment for which this network is being created. e.g. Development/Production.
-    Type: String
-    Default: UAT
-    AllowedValues: ["UAT", "DEV", "QA", "PROD"]
-
   InstancePublicIP:
     Description: Specifies whether to launch instances with public IP addresses in your VPC.
     Type: String
