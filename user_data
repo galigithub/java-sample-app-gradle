@@ -1,5 +1,16 @@
 #!/bin/bash
-yum install httpd -y
-systemctl start httpd.service
-systemctl enable httpd.service
-echo "Hello from Shiva" > /var/www/html/index.html
+sudo yum update -y
+sudo yum install java-1.8.0-openjdk-devel -y
+sudo useradd -m -U -d /opt/tomcat -s /bin/false tomcat
+sudo cd /tmp
+sudo wget https://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.35/bin/apache-tomcat-9.0.35.tar.gz
+tar -xf apache-tomcat-9.0.35.tar.gz
+sudo mv apache-tomcat-9.0.35 /opt/tomcat/
+sudo ln -s /opt/tomcat/apache-tomcat-9.0.35 /opt/tomcat/latest
+sudo chown -R tomcat: /opt/tomcat
+sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+sudo wget https://raw.githubusercontent.com/galigithub/java-sample-app-gradle/master/tomcat.service
+sudo cp tomcat.service /etc/systemd/system/tomcat.service
+sudo systemctl daemon-reload
+sudo systemctl enable tomcat
+sudo systemctl start tomcat
