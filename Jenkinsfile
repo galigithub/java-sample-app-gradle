@@ -64,8 +64,8 @@ node {
     }
     */
     stage('create launch configuration') {
-        //infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
-        sh "/usr/bin/ansible-playbook provision.yml  --vault-password-file=\"/home/rajgali83/pass.txt\""
+        infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
+        sh "/usr/bin/ansible-playbook provision.yml --extra-vars=\"stack_name=cnf-stack-${infraNumber}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
     }
     
     /*
