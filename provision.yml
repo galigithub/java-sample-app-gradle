@@ -7,7 +7,7 @@
        cloudformation:
           aws_access_key: "{{ accesskey }}"
           aws_secret_key: "{{ secretkey }}"
-          stack_name: 'shivacf'
+          stack_name: "{{ stack_name }}"
           state: present
           region: us-west-2
           #disable_rollback: true
