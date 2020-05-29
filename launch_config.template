@@ -184,14 +184,7 @@ Resources:
         SecurityGroups: 
            - !Ref WebSecGrp
         InstanceType: !Ref InstanceType
-        UserData:
-           Fn::Base64:
-             !Sub |
-               #!/bin/bash -x
-               yum install httpd -y
-               systemctl start httpd.service
-               systemctl enable httpd.service
-               echo "Hello from Shiva" > /var/www/html/index.html
+        UserData: user_data
   
   
   
