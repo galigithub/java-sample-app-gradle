@@ -21,7 +21,6 @@
              InstanceName: 'shivainfra' 
              #InstanceType: t2.micro
              KeyName: awscf
-             Environment: DEV
              MaxSizeASG: 1
              MinSizeASG: 1
              DesiredCapacityASG: 1
