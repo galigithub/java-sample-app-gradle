@@ -42,7 +42,7 @@ node {
         } finally {
         }
     }
-    /*
+    
     stage('Nexus Push') {
         nexusArtifactUploader artifacts: [
             [
@@ -59,10 +59,12 @@ node {
     }
     
     stage('copy nexus data') {
-        sh "echo sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/'${buildVersionNumber}'/HelloWorld-'${buildVersionNumber}'.jar >> ./user_data_file"
-        sh "echo sudo cp HelloWorld-'${buildVersionNumber}'.jar /opt/tomcat/latest/webapps/ >> ./user_data_file"
+        sh "echo sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/'${buildVersionNumber}'/HelloWorld-'${buildVersionNumber}'.jar >> ./user_data"
+        sh "echo sudo cp HelloWorld-'${buildVersionNumber}'.jar /opt/tomcat/latest/webapps/ >> ./user_data"
+        sh "echo sudo ls -la /opt/tomcat/latest/webapps/ >> ./user_data"
+        sh "cat user_data"
     }
-    */
+    
     stage('create launch configuration') {
         infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
         sh "/usr/bin/ansible-playbook provision.yml --extra-vars=\"stack_name=cnf-stack-${infraNumber}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
