@@ -132,56 +132,6 @@ node {
     }
     */
     
-    /*
-    stage('Docker'){
-        sshPublisher(publishers: 
-                     [sshPublisherDesc(configName: 'ansible_server', 
-                         transfers: [sshTransfer(cleanRemote: false, 
-                                                 excludes: '', 
-                                                 execCommand: '''cd /opt/docker;
-                                                 docker build -t shiva_demo .;
-                                                 docker tag shiva_demo shvdocker/shiva_demo:${BUILD_NUMBER};
-                                                 docker push shvdocker/shiva_demo:${BUILD_NUMBER};
-                                                 docker rmi shiva_demo shvdocker/shiva_demo;''', 
-                                                 execTimeout: 120000, 
-                                                 flatten: false, 
-                                                 makeEmptyDirs: false, 
-                                                 noDefaultExcludes: false, 
-                                                 patternSeparator: '[, ]+', 
-                                                 remoteDirectory: '//opt//docker', 
-                                                 remoteDirectorySDF: false, 
-                                                 removePrefix: 'build/libs', 
-                                                 sourceFiles: 'build/libs/HelloWorld.jar'
-                                                )], 
-                         usePromotionTimestamp: false, 
-                         useWorkspaceInPromotion: false, 
-                         verbose: false
-                     )])
-    }
-    */
-    
-    /*
-    stage('Gradle Static Analysis'){
-        withSonarQubeEnv('shivasonarqube') {
-            sh "./gradlew clean sonarqube"
-        }
-    }
-    
-    stage('Quality Gates'){
-        try {
-            timeout(time: 1, unit: 'HOURS') {
-                def qg = waitForQualityGate()
-                if (qg.status != 'OK') {
-                    error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                }
-            }
-        } catch (Exception ex) {
-            notifySonarStatus()
-        } finally {
-            notifySonarStatus()
-        }
-        
-    }*/
 }    
 
 def notifySonarStatus() {
