@@ -15,7 +15,7 @@ plugins {
     id 'maven'
 }
 
-mainClassName = 'hello.HelloWorld'
+//mainClassName = 'hello.HelloWorld'
 
 repositories {
     mavenCentral()
