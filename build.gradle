@@ -9,14 +9,11 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'java-library'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'application'
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
-apply plugin: 'org.sonarqube'
+plugins {
+    id 'org.sonarqube' version '2.7'
+    id 'java'
+    id 'maven'
+}
 
 mainClassName = 'hello.HelloWorld'
 
@@ -42,9 +39,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    //compile "joda-time:joda-time:2.2"
-    //compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
-    //compile group: 'com.google.guava', name: 'guava', version: '26.0-jre'
+    compile "joda-time:joda-time:2.2"
+    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+    compile group: 'com.google.guava', name: 'guava', version: '26.0-jre'
     testCompile "junit:junit:4.12"
 }
 
