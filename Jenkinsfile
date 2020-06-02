@@ -28,6 +28,28 @@ node {
         echo "file_name ${buildVersionNumber}"
     }
     
+    stage('Gradle Static Analysis'){
+        withSonarQubeEnv('mysonarserver') {
+            sh "./gradlew clean sonarqube"
+        }
+    }
+    
+    stage('Quality Gates'){
+        try {
+            timeout(time: 1, unit: 'HOURS') {
+                def qg = waitForQualityGate()
+                if (qg.status != 'OK') {
+                    error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                }
+            }
+        } catch (Exception ex) {
+            notifySonarStatus()
+        } finally {
+            notifySonarStatus()
+        }
+        
+    }
+    
     stage('Gradle Build') {
         try {
             echo 'Build Started'
@@ -62,17 +84,12 @@ node {
         sh "echo sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/'${buildVersionNumber}'/HelloWorld-'${buildVersionNumber}'.jar >> ./user_data_file"
         sh "echo sudo cp HelloWorld-'${buildVersionNumber}'.jar /opt/tomcat/latest/webapps/ >> ./user_data_file"
     }
-    
     /*
-    stage('stage') {
-        sh 'ansible all -m ping'
-    }*/
-    
     stage('create launch configuration') {
         infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
         sh "/usr/bin/ansible-playbook launch_config.yml --extra-vars=\"launch_config=launchconfig-${infraNumber} elb_name=loadbalancer-${infraNumber} asg_name=autoscale-${infraNumber}\"  --vault-password-file=\"/home/rajgali83/pass.txt\""
     }
-    
+    */
     /*
     stage('Ansible deploy') {
         try {
@@ -166,11 +183,11 @@ node {
         
     }*/
 }    
-/*
+
 def notifySonarStatus() {
-    def buildStatus = currentBuild.currentResult
-    
-    
+    echo "Notify block"
+    /*
+    def buildStatus = currentBuild.currentResult    
     emailext (
         subject: "'${buildStatus}': Job '${env.JOB_NAME} ${env.BUILD_NUMBER}'",
         body: """<p>Check console output at <a href="${env.BUILD_URL}">${env.JOB_NAME}</a></p>""",
@@ -178,5 +195,6 @@ def notifySonarStatus() {
         to: "shivakumargali83@gmail.com",
         from: "shivakumar399@gmail.com"
     )
+    */
 }
-*/
+
