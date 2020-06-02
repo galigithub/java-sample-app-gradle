@@ -5,6 +5,7 @@ apply plugin: 'idea'
 apply plugin: 'application'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
+apply plugin: 'org.sonarqube'
 
 mainClassName = 'hello.HelloWorld'
 
