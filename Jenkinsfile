@@ -8,6 +8,7 @@ node {
         
         def branch = env.BRANCH_NAME
         def job = env.JOB_NAME
+        def buildType = ''
         
         if(branch != null) {
             if("${branch}" =~ /^master$/) {
