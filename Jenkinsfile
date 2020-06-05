@@ -1,3 +1,5 @@
+@Library('my-shared-library@master') _ //master or whatever branch
+
 node {
     
     stage('Checkout') {
@@ -28,6 +30,10 @@ node {
         echo "file_name ${buildVersionNumber}"
     }
     
+    stage('Sharedlibrary test') {
+        FilterLogs('WARNING', 1)
+    }
+    /*
     stage('Gradle Static Analysis'){
         withSonarQubeEnv('mysonarserver') {
             sh "./gradlew clean sonarqube"
@@ -49,7 +55,8 @@ node {
         }
         
     }
-    
+    */
+    /*
     stage('Gradle Build') {
         try {
             echo 'Build Started'
@@ -63,8 +70,8 @@ node {
             throw e
         } finally {
         }
-    }
-    
+    }*/
+    /*
     stage('Nexus Push') {
         nexusArtifactUploader artifacts: [
             [
@@ -83,7 +90,7 @@ node {
     stage('copy nexus data') {
         sh "echo sudo wget http://104.198.202.130:8081/repository/shiva-release/com/shiva/test/HelloWorld/'${buildVersionNumber}'/HelloWorld-'${buildVersionNumber}'.jar >> ./user_data_file"
         sh "echo sudo cp HelloWorld-'${buildVersionNumber}'.jar /opt/tomcat/latest/webapps/ >> ./user_data_file"
-    }
+    }*/
     /*
     stage('create launch configuration') {
         infraNumber = env.BUILD_NUMBER + '-' + SHORT_GIT_COMMIT
