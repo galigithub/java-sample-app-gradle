@@ -1,6 +1,6 @@
+@Library('my-shared-library@master') _ //master or whatever branch
+
 node {
-    
-    @Library('my-shared-library@master') _ //master or whatever branch
     
     def buildType = ''
     
