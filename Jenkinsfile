@@ -33,7 +33,7 @@ node {
     }
     
     stage('Sharedlibrary test') {
-        FilterLogs('WARNING', 1)
+        filterLogs('WARNING', 1)
     }
     /*
     stage('Gradle Static Analysis'){
