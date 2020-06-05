@@ -34,7 +34,7 @@ node {
     
     stage('Sharedlibrary test') {
         //filterLogs('checkout', 1)
-        gradleBuild()
+        gradleBuild.build()
     }
     /*
     stage('Gradle Static Analysis'){
