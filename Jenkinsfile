@@ -2,13 +2,14 @@ node {
     
     @Library('my-shared-library@master') _ //master or whatever branch
     
+    def buildType = ''
+    
     stage('Checkout') {
         echo "Branch - ${env.BRANCH_NAME}"
         echo "Job name - ${env.JOB_NAME}"
         
         def branch = env.BRANCH_NAME
         def job = env.JOB_NAME
-        def buildType = ''
         
         if(branch != null) {
             if("${branch}" =~ /^master$/) {
